@@ -9,7 +9,7 @@ let endstopRight = false;
 
 
 function stop() {
-    pins.digitalWritePin(DigitalPin.P12, 1)
+    pins.digitalWritePin(DigitalPin.P12, 0)
     images.iconImage(IconNames.Square).showImage(0)
     direction = 0;
 }
@@ -21,25 +21,24 @@ function HandleEvent() {
     endstopRight = (val > 500);
 
     if (endstopRight && direction != -1) {
-        //basic.showString('A')
-        stop;
+        stop();
         return;
     }
 
     if (endstopLeft && direction != 1) {
         basic.showString('B')
-        stop;
+        stop();
         return;
     }
 
     if (input.buttonIsPressed(Button.AB)) {
-        stop;
+        stop();
         return;
     }
 
     if (input.buttonIsPressed(Button.A)) {
         if (direction == -1) {
-            stop;
+            stop();
             return;
         }
 
@@ -54,9 +53,10 @@ function HandleEvent() {
 
     if (input.buttonIsPressed(Button.B)) {
         if (direction == 1) {
-            stop;
+            stop();
             return;
         }
+
         pins.digitalWritePin(DigitalPin.P12, 0)
         pins.digitalWritePin(DigitalPin.P8, 0)
         control.waitMicros(1000)
