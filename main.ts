@@ -6,6 +6,8 @@
     P2: endstopLeft
 */
 
+
+
 let direction = 0; // STOP  // 1 = West  // -1 = East
 let endstopLeft = false;
 let endstopRight = false;
@@ -16,7 +18,7 @@ let trackChange = 0;
 function stop() {
 
     pins.digitalWritePin(DigitalPin.P12, 0)
-
+    
     if (autorun == 1 && wait() == 1) {
         GoReverse();
     } else {
